@@ -1,1 +1,1 @@
-nomad agent -config=/mnt/nomad/server.conf
+nomad agent -config=/mnt/nomad/server.conf -join private.defn.sh
