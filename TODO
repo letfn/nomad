@@ -1,6 +1,14 @@
-nomad agent -server -region=do -dc=defn.sh -node=global -config=/mnt/nomad/server.conf
+nomad agent -config=/mnt/nomad/server.conf
 
 data_dir = "/mnt/nomad"
+
+server {
+  enabled = true
+}
+
+datacenter = "defn.sh"
+
+region = "do"
 
 advertise {
   http = "100.77.60.69"
