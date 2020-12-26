@@ -1,0 +1,1 @@
+consul agent -data-dir /mnt/consul -datacenter global -bind 0.0.0.0 -client 0.0.0.0 -protocol 3 -join 100.77.60.69 -advertise "$(ip addr show tailscale0 | grep '/32' | awk '{print $2}' | cut -d/ -f1)"
