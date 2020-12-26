@@ -1,0 +1,9 @@
+nomad agent -server -region=do -dc=defn.sh -node=global -config=/mnt/nomad/server.conf
+
+data_dir = "/mnt/nomad"
+
+advertise {
+  http = "100.77.60.69"
+  rpc = "100.77.60.69"
+  serf = "100.77.60.69:4648"
+}
