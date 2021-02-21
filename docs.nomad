@@ -5,6 +5,10 @@ job "docs" {
     task "server" {
       driver = "docker"
 
+      vault {
+        policies  = ["admin"]
+      }
+
       config {
         image = "hashicorp/http-echo"
 
@@ -14,6 +18,15 @@ job "docs" {
           "-text",
           "hello world",
         ]
+      }
+
+      template {
+        data = <<EOF
+{{ with secret "kv/defn/hello" }}
+HELLO={{.Data.data.HELLO}}
+{{ end }}
+EOF
+        destination = "secrets.txt"
       }
     }
 
