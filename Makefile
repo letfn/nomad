@@ -17,4 +17,4 @@ nomad-server-config: # Generate nomad server config
 	cat server.conf | sed 's#x.x.x.x#$(shell ip addr show tailscale0 | grep '/32' | awk '{print $$2}' | cut -d/ -f1)#' > /mnt/nomad/server.conf
 
 nomad-server: # Run nomad server
-	nomad agent -config=./server.conf -consul-checks-use-advertise -bootstrap-expect 1
+	nomad agent -config=./server.conf -node="$(shell basename $(shell uname -n) .local)" -consul-checks-use-advertise -bootstrap-expect 1
