@@ -17,7 +17,7 @@ datacenter = "jojo.defn.in"
 region = "defn.in"
 
 advertise {
-  http = "100.104.190.125"
-  rpc = "100.104.190.125"
-  serf = "100.104.190.125:4648"
+  http = "x.x.x.x"
+  rpc = "x.x.x.x"
+  serf = "x.x.x.x:4648"
 }
