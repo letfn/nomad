@@ -9,7 +9,7 @@ nomad-client-config: # Generate nomad client config
 	cat client.conf | sed 's#x.x.x.x#$(shell ip addr show tailscale0 | grep '/32' | awk '{print $$2}' | cut -d/ -f1)#' > /mnt/nomad/client.conf
 
 nomad-client: # Run nomad client
-	nomad agent -config=/mnt/nomad/client.conf -consul-checks-use-advertise -join private.defn.sh -client
+	nomad agent -config=./mnt/nomad/client.conf -consul-checks-use-advertise -join private.defn.sh -client
 
 nomad-server-config: # Generate nomad server config
 	sudo install -d -o 1000 -g 1000 /mnt
@@ -17,4 +17,4 @@ nomad-server-config: # Generate nomad server config
 	cat server.conf | sed 's#x.x.x.x#$(shell ip addr show tailscale0 | grep '/32' | awk '{print $$2}' | cut -d/ -f1)#' > /mnt/nomad/server.conf
 
 nomad-server: # Run nomad server
-	nomad agent -config=/mnt/nomad/server.conf -consul-checks-use-advertise -join private.defn.sh
+	nomad agent -config=./server.conf -consul-checks-use-advertise -bootstrap-expect 1
