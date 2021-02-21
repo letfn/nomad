@@ -16,8 +16,8 @@ nomad-server-config: # Generate nomad server config
 	sudo install -d -o 1000 -g 1000 /mnt/nomad
 	cat server.conf | sed 's#x.x.x.x#$(shell ip addr show tailscale0 | grep '/32' | awk '{print $$2}' | cut -d/ -f1)#' > /mnt/nomad/server.conf
 
-nomad-dev: # Run nomad dev server
-	nomad agent -dev -config=./server.conf -node="$(shell basename $(shell uname -n) .local)" -consul-checks-use-advertise -bootstrap-expect 1
+nomad-dev: # Run dev server
+	nomad agent -config=./dev.conf -node="$(shell basename $(shell uname -n) .local)" -consul-checks-use-advertise -bootstrap-expect 1
 
 nomad-server: # Run nomad server
 	nomad agent -config=./server.conf -node="$(shell basename $(shell uname -n) .local)" -consul-checks-use-advertise -bootstrap-expect 1
